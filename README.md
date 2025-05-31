@@ -12,7 +12,7 @@ This project uses the classic Iris dataset to build and compare machine learning
 
 ---
 
-## 📚 Dataset Details
+##  Dataset Details
 - Features:
   - Sepal Length
   - Sepal Width
@@ -87,14 +87,14 @@ Although all three models achieved similar accuracy, the **Decision Tree Classif
 
 ---
 
-## 🛠️ Tools Used
+##  Tools Used
 - Python
 - Scikit-learn
 - Pandas & NumPy
 - Jupyter Notebook
 - streamlit
 
-## 🙋‍♂️ Author
+##  Author
 **Kelechi Emereole**  
 > Passionate about machine learning, analytics, and building real-world projects. 
 
