@@ -1,18 +1,24 @@
 import streamlit as st
-import numpy as np
+import pandas as pd
 import joblib
 from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier
 
-# Load the iris dataset
+# Load data
 iris = load_iris()
 
-# Load your trained Decision Tree model
-model = joblib.load('decision_tree_model.pkl')
+@st.cache_resource
+def load_model():
+    try:
+        return joblib.load('iris_model.joblib')
+    except:
+        st.warning("Using fallback model")
+        model = DecisionTreeClassifier(random_state=42)
+        return model.fit(iris.data, iris.target)
 
-# Streamlit UI
-st.title("🌸 Iris Flower Species Predictor - Decision Tree")
+model = load_model()
 
-st.write("Enter flower measurements below:")
+st.title("Iris Flower Classifier")
 
 # Input fields
 sepal_length = st.number_input("Sepal Length (cm)", min_value=0.0, value=5.1)
@@ -20,10 +26,9 @@ sepal_width = st.number_input("Sepal Width (cm)", min_value=0.0, value=3.5)
 petal_length = st.number_input("Petal Length (cm)", min_value=0.0, value=1.4)
 petal_width = st.number_input("Petal Width (cm)", min_value=0.0, value=0.2)
 
-# Prediction button
 if st.button("Predict"):
-    input_data = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
-    prediction = model.predict(input_data)
-    predicted_species = iris.target_names[prediction[0]]
-    
-    st.success(f"🌼 Predicted Species: **{predicted_species.capitalize()}**")
+    input_df = pd.DataFrame([[sepal_length, sepal_width, petal_length, petal_width]],
+                          columns=iris.feature_names)
+    prediction = model.predict(input_df)
+    species = iris.target_names[prediction[0]].capitalize()
+    st.success(f"Predicted species: {species}")
