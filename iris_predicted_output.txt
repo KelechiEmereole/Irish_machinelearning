@@ -1,0 +1,11 @@
+Sepal length: 5.1
+Sepal width: 3.5
+Petal length: 1.4
+Petal width: 0.2
+Predicted species: Setosa
+
+Sepal length: 6.4
+Sepal width: 3.2
+Petal length: 4.5
+Petal width: 1.5
+Predicted species: Versicolor
