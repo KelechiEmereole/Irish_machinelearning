@@ -33,3 +33,17 @@ prediction = model.predict(input_df)
 species = iris.target_names[prediction[0]].capitalize()
 
 print(f"\nPredicted species: {species}")
+
+# Save the output to a text file
+
+output_text = (
+    f"Sepal length: {sepal_length}\n"
+    f"Sepal width: {sepal_width}\n"
+    f"Petal length: {petal_length}\n"
+    f"Petal width: {petal_width}\n"
+    f"Predicted species: {species}\n"
+)
+
+# Save to a text file
+with open("iris_prediction_output.txt", "w") as f:
+    f.write(output_text)
